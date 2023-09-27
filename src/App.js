@@ -31,6 +31,10 @@ function App() {
     const showAlert = (show = 0, type = "", msg = "") => {
         setTimeout(() => { setAlert({ show, type, msg }) }, 3000);
     }
+    const removeItem = (id) => {
+        setList(list.filter((task) => task.id !== id));
+        showAlert(1, "danger", "item removed");
+    }
     return ( <
         section className = "section-center" >
         <
@@ -57,6 +61,7 @@ function App() {
                     div className = "grocery-container" >
                     <
                     List items = { list }
+                    removeItem = { removeItem }
                     /> <
                     button className = "clear-btn"
                     onClick = { clearList } > clear items < /button> <
