@@ -13,7 +13,16 @@ function App() {
         if (!name) {
             showAlert(1, "danger", "please enter values")
         } else if (name && isEditing) {
-
+            const editItem = list.map((item) => {
+                if (item.id === editID) {
+                    item.title = name;
+                }
+                return item;
+            });
+            setList(editItem);
+            setEditID(null);
+            setIsEditing(0);
+            showAlert(1, "success", "item edited");
         } else {
             showAlert(1, "success", "task added to the list")
             const newItem = {
@@ -34,6 +43,12 @@ function App() {
     const removeItem = (id) => {
         setList(list.filter((task) => task.id !== id));
         showAlert(1, "danger", "item removed");
+    }
+    const editItem = (id) => {
+        const specificItem = list.find((item) => item.id === id);
+        setIsEditing(1);
+        setEditID(id);
+        setName(specificItem.title);
     }
     return ( <
         section className = "section-center" >
@@ -62,6 +77,7 @@ function App() {
                     <
                     List items = { list }
                     removeItem = { removeItem }
+                    editItem = { editItem }
                     /> <
                     button className = "clear-btn"
                     onClick = { clearList } > clear items < /button> <
