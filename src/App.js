@@ -11,10 +11,11 @@ function App() {
     const handleSubmit = (e) => {
         e.preventDefault();
         if (!name) {
-
+            showAlert(1, "danger", "please enter values")
         } else if (name && isEditing) {
 
         } else {
+            showAlert(1, "success", "task added to the list")
             const newItem = {
                 id: new Date().getTime().toString(),
                 title: name
@@ -23,7 +24,9 @@ function App() {
             setName("");
         }
     };
-
+    const showAlert = (show = 0, type = "", msg = "") => {
+        setTimeout(() => { setAlert({ show, type, msg }) }, 3000);
+    }
     return ( <
         section className = "section-center" >
         <
