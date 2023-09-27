@@ -24,6 +24,10 @@ function App() {
             setName("");
         }
     };
+    const clearList = () => {
+        showAlert(1, "danger", "empty list");
+        setList([]);
+    }
     const showAlert = (show = 0, type = "", msg = "") => {
         setTimeout(() => { setAlert({ show, type, msg }) }, 3000);
     }
@@ -54,7 +58,8 @@ function App() {
                     <
                     List items = { list }
                     /> <
-                    button className = "clear-btn" > clear items < /button> <
+                    button className = "clear-btn"
+                    onClick = { clearList } > clear items < /button> <
                     /div>
                 )
             } <
